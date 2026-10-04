@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+:root {
+	font-family: "Space Grotesk", "Aptos", sans-serif;
+	color: #e9eadf;
+	background: #11140f;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-optical-sizing: auto;
+	font-weight: 400;
+	--ink: #11140f;
+	--ink-soft: #171b15;
+	--paper: #e9eadf;
+	--muted: #9a9f91;
+	--line: rgba(233, 234, 223, 0.14);
+	--line-strong: rgba(233, 234, 223, 0.24);
+	--lime: #c8f169;
+	--coral: #ff8068;
+	--mint: #7ad7bd;
+	--mono: "DM Mono", "Consolas", monospace;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	min-width: 320px;
+	scroll-behavior: smooth;
+	scroll-padding-top: 24px;
+}
+
+body {
+	min-width: 320px;
+	min-height: 100vh;
+	margin: 0;
+	background: var(--ink);
+}
+
+button,
+input {
+	font: inherit;
+}
+
+button,
+a,
+input {
+	-webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+	outline: 2px solid var(--lime);
+	outline-offset: 4px;
+}
+
+button:disabled {
+	cursor: not-allowed;
+}
+
+::selection {
+	color: var(--ink);
+	background: var(--lime);
+}
