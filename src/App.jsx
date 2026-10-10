@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 
-const apiBase = import.meta.env.VITE_API_URL || "http://localhost:5000";
+// On Vercel the frontend and API share the same domain, so use relative paths.
+// For local dev, set VITE_API_URL=http://localhost:5000 in a .env.local file.
+const apiBase = import.meta.env.VITE_API_URL ?? "";
 const processStages = [
 	"Extracting concept DNA",
 	"Finding hidden connections",
