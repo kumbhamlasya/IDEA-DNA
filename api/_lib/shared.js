@@ -1,14 +1,13 @@
-// Shared utilities for all Vercel serverless API functions
+// Shared utilities for all Vercel serverless API functions (ESM)
 
-const modelId =
-  (process.env.OPENROUTER_MODEL || "qwen/qwen3-8b:free").trim();
+const modelId = (process.env.OPENROUTER_MODEL || "qwen/qwen3-8b:free").trim();
 const openRouterUrl = "https://openrouter.ai/api/v1/chat/completions";
 
 /**
  * Validate and normalize the `words` array from a request body.
  * Returns a trimmed 3-element string array or null if invalid.
  */
-function normalizeWords(value) {
+export function normalizeWords(value) {
   if (!Array.isArray(value) || value.length !== 3) return null;
   if (
     value.some(
@@ -42,7 +41,7 @@ function parseJsonContent(content) {
 /**
  * Call the OpenRouter API and return the parsed JSON content.
  */
-async function requestJsonFromModel(prompt) {
+export async function requestJsonFromModel(prompt) {
   const apiKey = (process.env.OPENROUTER_API_KEY || "").trim();
   if (!apiKey) {
     const error = new Error("OpenRouter is not configured");
@@ -50,10 +49,9 @@ async function requestJsonFromModel(prompt) {
     throw error;
   }
 
-  const siteUrl =
-    process.env.VERCEL_PROJECT_PRODUCTION_URL
-      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : "https://idea-dna.vercel.app";
+  const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "https://idea-dna.vercel.app";
 
   const response = await fetch(openRouterUrl, {
     method: "POST",
@@ -96,11 +94,8 @@ async function requestJsonFromModel(prompt) {
 /**
  * Set standard CORS headers so the frontend can call these routes.
  */
-function setCorsHeaders(res) {
-  const origin = process.env.FRONTEND_ORIGIN || "*";
-  res.setHeader("Access-Control-Allow-Origin", origin);
+export function setCorsHeaders(res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 }
-
-module.exports = { normalizeWords, requestJsonFromModel, setCorsHeaders };

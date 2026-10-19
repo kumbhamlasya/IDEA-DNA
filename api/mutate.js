@@ -1,20 +1,13 @@
-const { normalizeWords, requestJsonFromModel, setCorsHeaders } = require("./_lib/shared");
+import { normalizeWords, requestJsonFromModel, setCorsHeaders } from "./_lib/shared.js";
 
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
   setCorsHeaders(res);
 
-  if (req.method === "OPTIONS") {
-    return res.status(204).end();
-  }
-
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
-  }
+  if (req.method === "OPTIONS") return res.status(204).end();
+  if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
   const originalIdea =
-    typeof req.body?.originalIdea === "string"
-      ? req.body.originalIdea.trim()
-      : "";
+    typeof req.body?.originalIdea === "string" ? req.body.originalIdea.trim() : "";
   const words = normalizeWords(req.body?.words);
 
   if (!originalIdea || originalIdea.length > 5000 || !words) {
@@ -42,4 +35,4 @@ Return only this JSON shape with concise string values:
     });
     return res.status(502).json({ error: "AI generation failed. Please try again." });
   }
-};
+}
