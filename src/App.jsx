@@ -264,7 +264,7 @@ function App() {
 										<p className="idle-title">Ready to cross-pollinate.</p>
 										<p className="idle-copy">Three inputs go in. A different way to see the problem comes out.</p>
 									</div>
-									  <div className="panel-bottomline"><span>MODEL: QWEN 3.8 27B FREE / OPENROUTER</span><span>KEY: SERVER-SIDE</span></div>
+									  <div className="panel-bottomline"><span>MODEL: GEMMA 4 31B / OPENROUTER</span><span>KEY: SERVER-SIDE</span></div>
 								</div>
 							)}
 							<div className="scan-line" aria-hidden="true" />

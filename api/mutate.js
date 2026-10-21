@@ -28,11 +28,14 @@ Return only this JSON shape with concise string values:
     const data = await requestJsonFromModel(prompt);
     return res.status(200).json(data);
   } catch (error) {
-    console.error("mutate error", {
+    console.error("[mutate] handler error", {
       status: error.status,
       code: error.providerCode || error.code,
       message: String(error.message || "").slice(0, 240),
     });
-    return res.status(502).json({ error: "AI generation failed. Please try again." });
+    const msg = error.userFacing
+      ? error.message
+      : "AI generation failed. Please try again.";
+    return res.status(502).json({ error: msg });
   }
 }
